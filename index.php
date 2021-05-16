@@ -40,6 +40,14 @@ $lots = [
         'category' => 'Разное'
     ]
 ];
+function format_price($price)
+{
+    $price = ceil($price);
+    if ($price >= 1000) {
+        $price = number_format($price, 0, null, ' ');
+    }
+    return $price . ' ₽';
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -113,11 +121,12 @@ $lots = [
                         </div>
                         <div class="lot__info">
                             <span class="lot__category"><?= $val['category'] ?></span>
-                            <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $val['title'] ?></a></h3>
+                            <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $val['title'] ?></a>
+                            </h3>
                             <div class="lot__state">
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
-                                    <span class="lot__cost"><?= $val['price'] ?><b class="rub">р</b></span>
+                                    <span class="lot__cost"><?= format_price($val['price']) ?></span>
                                 </div>
                                 <div class="lot__timer timer">
                                     12:23
@@ -130,7 +139,6 @@ $lots = [
         </section>
     </main>
 </div>
-пше
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
